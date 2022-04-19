@@ -15,7 +15,9 @@ export const SideBar = () => {
           <Box sx={{ mt: 1.5 }}>
             <Image src="/slalom.png" width="192" height="68.02" component="div" />
           </Box>
-          <Typography>2022 Food Drive</Typography>
+          <Box sx={{ position: 'absolute', top: 30, right: 50 }}>
+            <Typography sx={{ fontSize: 25 }}>2022 Food Drive</Typography>
+          </Box>
         </Toolbar>
       </AppBar>
       <Box></Box>
