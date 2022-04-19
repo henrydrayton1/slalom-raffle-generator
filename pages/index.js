@@ -39,9 +39,7 @@ export default function Home() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [arr, setArr] = React.useState([]);
-  console.log(512000 + numberState);
 
-  console.log(arr);
   return (
     <div className={styles.container}>
       <Head>
