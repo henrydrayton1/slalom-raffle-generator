@@ -88,6 +88,7 @@ export default function Home() {
                     id="outlined-basic"
                     label="Set Range"
                     variant="outlined"
+                    
                     size="small"
                     value={top}
                     onChange={(event) => {
