@@ -32,13 +32,38 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary
 }));
 
+export const shuffle = (array) => {
+  var i = array.length,
+    j = 0,
+    temp;
+
+  while (i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
+};
+const ranNums = shuffle(
+  Array.apply(null, { length: 5 + 1 })
+    .map(Number.call, Number)
+    .slice(1)
+);
+
+console.log(ranNums);
+
 export default function Home() {
-  const [numberState, setNumberState] = React.useState(0);
+  const [count, setCount] = React.useState(0);
   const [top, setTop] = React.useState(1);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [arr, setArr] = React.useState([]);
+
+  const winner = ranNums[count];
+
+  console.log(winner);
 
   return (
     <div className={styles.container}>
@@ -56,13 +81,14 @@ export default function Home() {
           </Box>
           <Box sx={{ margin: '0 auto', width: '50%' }}>
             <Typography sx={{ textAlign: 'center', fontSize: 50, mb: 10, mt: 10 }}>
-              <CountUp end={512000 + numberState} />
+              <CountUp end={512000 + winner} />
             </Typography>
+            <createAndShuffle top={top} />
             <Button
               sx={{ width: 280 }}
               onClick={() => {
-                setNumberState(Math.floor(Math.random() * top) + 1);
-                setArr([...arr, 512000 + numberState]);
+                setCount(++count);
+                setArr([...arr, 512000 + winner]);
               }}
               variant="contained">
               Generate random winner
@@ -88,7 +114,6 @@ export default function Home() {
                     id="outlined-basic"
                     label="Set Range"
                     variant="outlined"
-                    
                     size="small"
                     value={top}
                     onChange={(event) => {
